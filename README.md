@@ -63,8 +63,8 @@ Get licenses, detailed design data, and upcoming official hardware.
 
 * **Hardware:** ESP32 (Standalone operation).
 * **Interface:** RS-232C (TTL level, requires converter).
-* **Protocol:** Model Context Protocol (MCP) over SSE.
-* **Core Tools:** `serial_query`, `serial_write`, `get_system_info`.
+* **Protocol:** Model Context Protocol (MCP) over SSE.　https://mcpmarket.com/ja/server/aibridge?utm_source=chatgpt.com
+* * **Core Tools:** `serial_query`, `serial_write`, `get_system_info`.
 
 ---
 
