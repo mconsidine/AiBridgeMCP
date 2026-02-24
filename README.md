@@ -76,9 +76,10 @@ Get licenses, detailed design data, and upcoming official hardware.
 
 ---
 
-**Developer:** Sadahiko Nishioka (OnStepNinja)
+**Developer:** Nishioka Sadahiko (OnStepNinja)
 
-**Blog:** [NK Kikaku's Blog](https://nskikaku.blog.fc2.com/)
+**AiBridgeMCP Community:** [](https://www.facebook.com/groups/1230935959149731)
+**Blog:** [](https://nskikaku.blog.fc2.com/)
 
 ---
 
