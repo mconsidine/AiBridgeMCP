@@ -66,12 +66,10 @@ AiBridgeMCP has been verified to operate correctly on stable versions of Claude 
 - [Bug report: Severe UI lag and MCP regression — GitHub Issue #26302](https://github.com/anthropics/claude-code/issues/26302)
 - [Bug report: MCP "searched available tools" regression — GitHub Issue #25706](https://github.com/anthropics/claude-code/issues/25706)
 - [Claude Desktop version history — Uptodown](https://claude.en.uptodown.com/mac/versions)
-
----
-
----
-
 *Last updated: February 27, 2026*
+---
+
+---
 
 ### 📦 v1.8.8 All-in-One Package (2026/02/24)
 
