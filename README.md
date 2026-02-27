@@ -117,4 +117,4 @@ Community: https://www.facebook.com/groups/1230935959149731
 
 ---
 
-![MCP Inspector 画面](./assets/mcp_inspector_sse_alpaca_discovery2.png)
+![MCP Inspector 画面](./assets/Streamable_HTTP.png)
