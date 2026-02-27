@@ -1,3 +1,15 @@
+> [!IMPORTANT]
+> ### Notice: Transition to Streamable HTTP and Deprecation of Legacy SSE
+>
+> To align with the upcoming **Model Context Protocol (MCP) version 2026-03-26**, Anthropic and the MCP ecosystem will transition from the legacy HTTP+SSE transport to **Streamable HTTP**. This update enhances connection stability and reliability for AI-to-hardware communication.
+>
+> - **Expected Timing:** Around March 25, 2026 (Late March)
+> - **Key Change:** Legacy SSE transport will be deprecated. AiBridgeMCP is being updated to support the new unified "Streamable HTTP" specification.
+> - **Benefits:** Improved session recovery and better compatibility with various network environments.
+> - **Action Required:** Please ensure you are using the latest version of AiBridgeMCP that supports the new protocol before the transition period.
+
+---
+
 # AiBridgeMCP: The World's Best AI Bridge for Legacy Hardware
 
 > **"Stop writing code. Just give the manual to the AI."**
