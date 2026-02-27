@@ -44,6 +44,35 @@ Supports astronomical GOTO systems (**OnStep, NS-5000**), Digital Multimeters (D
 
 ## 🚀 Latest Release & Store
 
+# ⚠️ Known Issue: MCP Instability with Claude Desktop v1.1.3189
+
+> **Important Notice for AiBridgeMCP Users**
+
+If you are experiencing unstable MCP connections or tool call failures, **Claude Desktop v1.1.3189 (released February 17, 2026) contains known bugs** that may be the root cause — not AiBridgeMCP itself.
+
+### What's happening
+
+- **MCP regression**: The "searched available tools" behavior is broken in this version, causing unreliable tool discovery and invocation.
+- **UI lag / system overload**: A Hyper-V virtual machine introduced for the Cowork feature starts automatically at every launch, even when unused. This consumes significant CPU, memory, and I/O in the background, degrading all MCP communication.
+
+### Solution
+
+**Update Claude Desktop to v1.1.4088 (released February 24, 2026) or later.**
+
+AiBridgeMCP has been verified to operate correctly on stable versions of Claude Desktop. If you continue to experience issues after updating, please open an issue in this repository.
+
+### References
+
+- [Bug report: Severe UI lag and MCP regression — GitHub Issue #26302](https://github.com/anthropics/claude-code/issues/26302)
+- [Bug report: MCP "searched available tools" regression — GitHub Issue #25706](https://github.com/anthropics/claude-code/issues/25706)
+- [Claude Desktop version history — Uptodown](https://claude.en.uptodown.com/mac/versions)
+
+---
+
+---
+
+*Last updated: February 27, 2026*
+
 ### 📦 v1.8.8 All-in-One Package (2026/02/24)
 
 Includes everything you need to get started immediately.
