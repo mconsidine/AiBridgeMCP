@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AiBridgeMCP Quick Setup Guide — Streamable HTTP Edition</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Segoe UI", "Arial", sans-serif;
+    font-size: 10pt;
+    color: #202124;
+    background: white;
+    padding: 0;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    padding: 18mm 18mm 18mm 18mm;
+  }
+
+  /* Title area */
+  .title-block {
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 14px;
+    margin-bottom: 18px;
+  }
+  .title-block h1 {
+    font-size: 22pt;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+  .version-badge {
+    display: inline-block;
+    background: #1a73e8;
+    color: white;
+    font-size: 9pt;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 12px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .version-old {
+    display: inline-block;
+    background: #ea4335;
+    color: white;
+    font-size: 8pt;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 12px;
+    vertical-align: middle;
+    text-decoration: line-through;
+    opacity: 0.75;
+  }
+  .meta {
+    font-size: 8.5pt;
+    color: #5f6368;
+    margin-top: 5px;
+  }
+
+  /* Deprecation notice banner */
+  .deprecation-notice {
+    background: #fff8e1;
+    border-left: 4px solid #f9a825;
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin-bottom: 18px;
+    font-size: 9pt;
+    line-height: 1.7;
+  }
+  .deprecation-notice strong {
+    color: #e65100;
+  }
+
+  /* Intro */
+  .intro {
+    margin-bottom: 18px;
+    font-size: 10pt;
+    line-height: 1.7;
+  }
+
+  /* Sections */
+  .section {
+    margin-bottom: 18px;
+  }
+  .section-title {
+    font-size: 13pt;
+    font-weight: 700;
+    margin-bottom: 10px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  ul { padding-left: 22px; }
+  ul li { margin-bottom: 3px; line-height: 1.6; }
+  ol { padding-left: 22px; }
+  ol li { margin-bottom: 6px; line-height: 1.6; }
+
+  /* Step headings */
+  .step-title {
+    font-size: 11pt;
+    font-weight: 700;
+    margin-top: 12px;
+    margin-bottom: 5px;
+  }
+
+  /* Code blocks */
+  pre {
+    background: #f1f3f4;
+    border: 1px solid #dadce0;
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 8.5pt;
+    line-height: 1.5;
+    margin: 8px 0;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  code {
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 8.5pt;
+    background: #f1f3f4;
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  /* Info / warning boxes */
+  .note-box {
+    background: #e8f0fe;
+    border-left: 4px solid #1a73e8;
+    border-radius: 4px;
+    padding: 8px 14px;
+    margin: 8px 0;
+    font-size: 9pt;
+    line-height: 1.6;
+  }
+  .warn-box {
+    background: #fce8e6;
+    border-left: 4px solid #ea4335;
+    border-radius: 4px;
+    padding: 8px 14px;
+    margin: 8px 0;
+    font-size: 9pt;
+    line-height: 1.6;
+  }
+
+  /* License */
+  .license {
+    border-top: 1px solid #e0e0e0;
+    padding-top: 10px;
+    margin-top: 18px;
+    font-size: 8.5pt;
+    color: #5f6368;
+    line-height: 1.6;
+  }
+
+  /* Print */
+  @media print {
+    body { background: white; }
+    .page { margin: 0; padding: 14mm 15mm 14mm 15mm; width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Title -->
+  <div class="title-block">
+    <h1>🔭 AiBridgeMCP Quick Setup Guide</h1>
+    <div style="margin-top:6px;">
+      <span class="version-badge">Streamable HTTP Edition</span>
+      <span class="version-old">v1.8.8 SSE Edition (deprecated)</span>
+    </div>
+    <div class="meta">Version: v2.0.1 &nbsp;|&nbsp; Date: 2026-02-28 &nbsp;|&nbsp; Protocol: Streamable HTTP (MCP 2025-03-26)</div>
+  </div>
+
+  <!-- Deprecation notice -->
+  <div class="deprecation-notice">
+    ⚠️ <strong>Important: Protocol Change Notice</strong><br><br>
+    The <strong>SSE (Server-Sent Events)</strong> protocol used in the previous version (v1.8.8) has been
+    <strong>officially announced for deprecation by Anthropic (Claude)</strong> within the coming months.<br><br>
+    <strong>Streamable HTTP</strong> is now the <strong>required protocol</strong> for all MCP servers.
+    Once SSE support is removed, MCP servers that rely solely on SSE will no longer be able to connect to Claude Desktop.<br><br>
+    <strong>AiBridgeMCP v2 fully supports Streamable HTTP.</strong>
+    Please use the new connector: <code>aibridge-connector-v2.exe</code>.
+  </div>
+
+  <!-- Introduction -->
+  <p class="intro">
+    Thank you for using <strong>AiBridgeMCP</strong>.<br>
+    This tool acts as a bridge that allows Claude Desktop to communicate directly with your ESP32 device.
+  </p>
+
+  <!-- What's Included -->
+  <div class="section">
+    <div class="section-title">📦 What's Included</div>
+    <ul>
+      <li><strong>connector</strong> folder
+        <ul>
+          <li><code>aibridge-connector-v2.exe</code> — connection proxy program (<strong>v2, new</strong>)</li>
+          <li>This guide (PDF)</li>
+        </ul>
+      </li>
+    </ul>
+    <div class="note-box">
+      ℹ️ This is a different file from the old <code>aibridge-connector.exe</code> (used for v1.8.8 SSE).
+      Always use the <strong>v2</strong> file.
+    </div>
+  </div>
+
+  <!-- Setup Steps -->
+  <div class="section">
+    <div class="section-title">🚀 Setup Steps (3 Steps)</div>
+
+    <div class="step-title">1. Place the Folder</div>
+    <p>Move the downloaded <code>connector</code> folder to a convenient location on your PC.</p>
+    <div class="note-box">
+      Recommended location: <code>C:\AiBridgeMCP</code><br>
+      ※ The Desktop or Downloads folder also works, but <strong>do not move the folder after placing it</strong> — the path in the config must stay the same.
+    </div>
+
+    <div class="step-title">2. Find Your ESP32's STA IP Address</div>
+    <p>Note the <strong>STA IP address</strong> assigned to your AiBridgeMCP (ESP32) on your Wi-Fi network.</p>
+    <div class="note-box">Example: <code>192.168.3.154</code></div>
+
+    <div class="step-title">3. Edit the Claude Desktop Configuration</div>
+    <p>This is the most important step — please follow carefully.</p>
+    <ol>
+      <li>
+        <strong>Fully quit Claude Desktop.</strong><br>
+        Clicking the ✕ button alone may not close it completely. Use Task Manager to force-quit:
+        <div class="note-box" style="margin-top:6px;">
+          <strong>🗂 How to Force Quit via Task Manager</strong><br>
+          ① Press <strong>Ctrl + Shift + Esc</strong> simultaneously — Task Manager will open.<br>
+          ② Find <strong>Claude</strong> or <strong>Claude Desktop</strong> in the "Processes" list.<br>
+          ③ Right-click it → click "<strong>End Task</strong>".<br>
+          ④ Close Task Manager.
+        </div>
+      </li>
+      <li>
+        Open the Claude Desktop configuration folder:<br>
+        <div class="note-box" style="margin-top:6px;">
+          <strong>📂 How to Open the Folder</strong><br>
+          ① Press <strong>Windows key (⊞) + R</strong> at the same time.<br>
+          &nbsp;&nbsp;&nbsp;→ A small "Run" dialog box will appear.<br>
+          ② Copy and paste the following into the input field, then press <strong>Enter</strong>:<br>
+          <code style="display:block; margin-top:4px;">%APPDATA%\Roaming\Claude</code>
+          ③ The Claude configuration folder will open automatically.
+        </div>
+      </li>
+      <li>Open <code>claude_desktop_config.json</code> in the folder using Notepad or any text editor.</li>
+      <li>Replace the entire contents with the following and save:</li>
+    </ol>
+
+<pre>{
+  "mcpServers": {
+    "AiBridgeMCP": {
+      "command": "C:\\AiBridgeMCP\\connector\\aibridge-connector-v2.exe",
+      "args": [
+        "your.ESP32.IP.address"
+      ]
+    }
+  }
+}</pre>
+
+    <div class="warn-box">
+      ⚠️ <strong>Important Notes</strong><br>
+      · Backslashes: Each <code>\</code> in the path must be written as <code>\\</code> (doubled).<br>
+      · IP address: Replace <code>"your.ESP32.IP.address"</code> with the actual IP, e.g. <code>"192.168.3.154"</code>.<br>
+      · Make sure the filename contains <code>-v2</code>: <code>aibridge-connector<strong>-v2</strong>.exe</code>.
+    </div>
+  </div>
+
+  <!-- Verify -->
+  <div class="section">
+    <div class="section-title">✅ Verify the Connection</div>
+    <ol>
+      <li>Launch Claude Desktop.</li>
+      <li>Click the <strong>"+" icon</strong> at the bottom-left of the chat input area.</li>
+      <li>Select "<strong>Connectors &gt;</strong>" from the menu.</li>
+      <li>If <strong>AiBridgeMCP</strong> appears with a <strong>🔵 blue toggle switch (ON)</strong>, the connection is successful!</li>
+      <li>To confirm it's working, ask Claude:<br>
+        <code style="display:inline-block; margin-top:4px;">"Tell me the status of the ESP32."</code><br>
+        If Claude responds with ESP32 details (IP address, CPU speed, free memory, etc.), everything is working perfectly.
+      </li>
+    </ol>
+  </div>
+
+  <!-- Troubleshooting -->
+  <div class="section">
+    <div class="section-title">🛠 Troubleshooting</div>
+    <ul>
+      <li><strong>AiBridgeMCP does not appear under "+" → "Connectors":</strong> Check <code>claude_desktop_config.json</code> for typos (missing commas or brackets). Try restarting Claude Desktop.</li>
+      <li><strong>Wrong file:</strong> Confirm the filename is <code>aibridge-connector-v2.exe</code> (with <code>-v2</code>). The old <code>aibridge-connector.exe</code> is not compatible with v2.</li>
+      <li><strong>Communication error:</strong> Make sure your ESP32 and PC are connected to the <strong>same Wi-Fi network</strong> and that the IP address is correct.</li>
+    </ul>
+  </div>
+
+  <!-- License -->
+  <div class="license">
+    ⚖️ License / Copyright &copy; 2026 Nishioka Sadahiko<br>
+    This software is a dedicated connection proxy for AiBridgeMCP.
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AiBridgeMCP かんたんセットアップガイド Streamable HTTP版</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Meiryo", sans-serif;
+    font-size: 10pt;
+    color: #202124;
+    background: white;
+    padding: 0;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    padding: 18mm 18mm 18mm 18mm;
+  }
+
+  /* タイトルエリア */
+  .title-block {
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 14px;
+    margin-bottom: 18px;
+  }
+  .title-block h1 {
+    font-size: 22pt;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+  .version-badge {
+    display: inline-block;
+    background: #1a73e8;
+    color: white;
+    font-size: 9pt;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 12px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .version-old {
+    display: inline-block;
+    background: #ea4335;
+    color: white;
+    font-size: 8pt;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 12px;
+    vertical-align: middle;
+    text-decoration: line-through;
+    opacity: 0.75;
+  }
+  .meta {
+    font-size: 8.5pt;
+    color: #5f6368;
+    margin-top: 5px;
+  }
+
+  /* 廃止注記バナー */
+  .deprecation-notice {
+    background: #fff8e1;
+    border-left: 4px solid #f9a825;
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin-bottom: 18px;
+    font-size: 9pt;
+  }
+  .deprecation-notice strong {
+    color: #e65100;
+  }
+
+  /* 本文 */
+  .intro {
+    margin-bottom: 18px;
+    font-size: 10pt;
+    line-height: 1.7;
+  }
+
+  /* セクション */
+  .section {
+    margin-bottom: 18px;
+  }
+  .section-title {
+    font-size: 13pt;
+    font-weight: 700;
+    margin-bottom: 10px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  ul { padding-left: 22px; }
+  ul li { margin-bottom: 3px; line-height: 1.6; }
+  ol { padding-left: 22px; }
+  ol li { margin-bottom: 6px; line-height: 1.6; }
+
+  /* ステップ番号見出し */
+  .step-title {
+    font-size: 11pt;
+    font-weight: 700;
+    margin-top: 12px;
+    margin-bottom: 5px;
+  }
+
+  /* コードブロック */
+  pre {
+    background: #f1f3f4;
+    border: 1px solid #dadce0;
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 8.5pt;
+    line-height: 1.5;
+    margin: 8px 0;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  code {
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 8.5pt;
+    background: #f1f3f4;
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  /* 注意ボックス */
+  .note-box {
+    background: #e8f0fe;
+    border-left: 4px solid #1a73e8;
+    border-radius: 4px;
+    padding: 8px 14px;
+    margin: 8px 0;
+    font-size: 9pt;
+    line-height: 1.6;
+  }
+  .warn-box {
+    background: #fce8e6;
+    border-left: 4px solid #ea4335;
+    border-radius: 4px;
+    padding: 8px 14px;
+    margin: 8px 0;
+    font-size: 9pt;
+    line-height: 1.6;
+  }
+
+  /* ライセンス */
+  .license {
+    border-top: 1px solid #e0e0e0;
+    padding-top: 10px;
+    margin-top: 18px;
+    font-size: 8.5pt;
+    color: #5f6368;
+    line-height: 1.6;
+  }
+
+  /* 印刷設定 */
+  @media print {
+    body { background: white; }
+    .page { margin: 0; padding: 14mm 15mm 14mm 15mm; width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- タイトル -->
+  <div class="title-block">
+    <h1>🔭 AiBridgeMCP かんたんセットアップガイド</h1>
+    <div style="margin-top:6px;">
+      <span class="version-badge">Streamable HTTP 版</span>
+      <span class="version-old">v1.8.8 SSE 版（廃止予定）</span>
+    </div>
+    <div class="meta">バージョン: v2.0.1 &nbsp;|&nbsp; 発行日: 2026-02-28 &nbsp;|&nbsp; 対象プロトコル: Streamable HTTP (MCP 2025-03-26)</div>
+  </div>
+
+  <!-- 廃止注記 -->
+  <div class="deprecation-notice">
+    ⚠️ <strong>プロトコル変更のお知らせ（重要）</strong><br><br>
+    旧バージョン（v1.8.8）で使用していた <strong>SSE（Server-Sent Events）</strong> は、
+    Claude（Anthropic 社）が「今後数カ月以内に廃止する」と正式に発表したプロトコルです。<br><br>
+    代わりに <strong>Streamable HTTP</strong> が MCP サーバーの<strong>必須プロトコル</strong>として義務付けられました。
+    今後 SSE のみに対応したサーバーは、Claude Desktop から接続できなくなります。<br><br>
+    <strong>AiBridgeMCP v2 は Streamable HTTP に完全対応しています。</strong>
+    コネクタも新しい <code>aibridge-connector-v2.exe</code> をご使用ください。
+  </div>
+
+  <!-- はじめに -->
+  <p class="intro">
+    この度は <strong>AiBridgeMCP</strong> をご利用いただきありがとうございます。<br>
+    このツールは、Claude Desktop からあなたの ESP32 デバイスを操作するための「架け橋」となるプログラムです。
+  </p>
+
+  <!-- 同梱物 -->
+  <div class="section">
+    <div class="section-title">📦 同梱物</div>
+    <ul>
+      <li><strong>connector</strong> フォルダ
+        <ul>
+          <li><code>aibridge-connector-v2.exe</code>（接続用プログラム ← <strong>v2 新版</strong>）</li>
+          <li>本ガイド（PDF）</li>
+        </ul>
+      </li>
+    </ul>
+    <div class="note-box">
+      ℹ️ 旧版の <code>aibridge-connector.exe</code>（v1.8.8 SSE 用）とは別ファイルです。
+      必ず <strong>v2</strong> のファイルをご使用ください。
+    </div>
+  </div>
+
+  <!-- セットアップ手順 -->
+  <div class="section">
+    <div class="section-title">🚀 セットアップ手順（3ステップ）</div>
+
+    <div class="step-title">1. フォルダの準備</div>
+    <p>ダウンロードした <code>connector</code> フォルダを、パソコンの分かりやすい場所に移動してください。</p>
+    <div class="note-box">
+      おすすめの場所: <code>C:\AiBridgeMCP</code><br>
+      ※ デスクトップやダウンロードフォルダでも動きますが、<strong>一度置いたら場所を変えないように</strong>してください。
+    </div>
+
+    <div class="step-title">2. ESP32 の STA IP アドレスを確認</div>
+    <p>あなたの AiBridgeMCP（ESP32）が接続されている Wi-Fi の <strong>STA IP アドレス</strong>をメモしてください。</p>
+    <div class="note-box">例: <code>192.168.3.154</code></div>
+
+    <div class="step-title">3. Claude Desktop の設定を書き換える</div>
+    <p>ここが一番のポイントです。慎重に行いましょう！</p>
+    <ol>
+      <li>
+        Claude Desktop を<strong>完全に終了</strong>してください。<br>
+        ※ 右上の ✕ を押すだけでは完全に終了しない場合があります。以下の手順でタスクマネージャーから終了させてください。
+        <div class="note-box" style="margin-top:6px;">
+          <strong>🗂 タスクマネージャーでの終了手順</strong><br>
+          ① キーボードの <strong>Ctrl + Shift + Esc</strong> を同時に押す（タスクマネージャーが開きます）<br>
+          ② 「プロセス」タブの一覧から <strong>Claude</strong> または <strong>Claude Desktop</strong> を探す<br>
+          ③ 右クリック → 「<strong>タスクの終了</strong>」をクリック<br>
+          ④ タスクマネージャーを閉じる
+        </div>
+      </li>
+      <li>
+        設定ファイルのフォルダを開きます。<br>
+        以下の手順が最も簡単です：
+        <div class="note-box" style="margin-top:6px;">
+          <strong>📂 フォルダの開き方</strong><br>
+          ① キーボードの <strong>Windows キー（田）を押しながら R キー</strong>を押す<br>
+          &nbsp;&nbsp;&nbsp;→「ファイル名を指定して実行」という小さなウィンドウが開きます<br>
+          ② 入力欄に以下をそのままコピー＆ペーストして <strong>Enter キー</strong>を押す<br>
+          <code style="display:block; margin-top:4px;">%APPDATA%\Roaming\Claude</code>
+          ③ Claude の設定フォルダが自動で開きます
+        </div>
+      </li>
+      <li>開いたフォルダの中にある <code>claude_desktop_config.json</code> をメモ帳などで開きます。</li>
+      <li>中身を以下の内容に書き換えて保存してください。</li>
+    </ol>
+
+<pre>{
+  "mcpServers": {
+    "AiBridgeMCP": {
+      "command": "C:\\AiBridgeMCP\\connector\\aibridge-connector-v2.exe",
+      "args": [
+        "あなたのESP32のIPアドレス"
+      ]
+    }
+  }
+}</pre>
+
+    <div class="warn-box">
+      ⚠️ <strong>注意点</strong><br>
+      ・パスの書き方: <code>\</code>（バックスラッシュ）は必ず <code>\\</code> と2つ重ねて書いてください。<br>
+      ・IP アドレス: <code>"192.168.3.154"</code> のように、メモした IP アドレスを書き込んでください。<br>
+      ・ファイル名が <code>aibridge-connector<strong>-v2</strong>.exe</code> であることを確認してください。
+    </div>
+  </div>
+
+  <!-- 動作確認 -->
+  <div class="section">
+    <div class="section-title">✅ 動いているか確認する</div>
+    <ol>
+      <li>Claude Desktop を起動します。</li>
+      <li>チャット入力欄の<strong>左下にある「＋」マーク</strong>をクリックします。</li>
+      <li>メニューに「<strong>コネクタ &gt;</strong>」と表示されるのでクリックします。</li>
+      <li><strong>AiBridgeMCP</strong> がスライドスイッチ（🔵 青色・ON）で表示されていれば<strong>接続成功</strong>です！</li>
+      <li>念のため、Claude に話しかけて動作を確認してください。<br>
+        <code style="display:inline-block; margin-top:4px;">「ESP32 の状態を教えて」</code><br>
+        ESP32 の情報（IP アドレス、CPU 速度、空きメモリなど）が返ってくれば完璧です。
+      </li>
+    </ol>
+  </div>
+
+  <!-- トラブルシューティング -->
+  <div class="section">
+    <div class="section-title">🛠 うまくいかないときは？</div>
+    <ul>
+      <li><strong>「＋」→「コネクタ」に AiBridgeMCP が表示されない:</strong> <code>claude_desktop_config.json</code> の書き間違い（カンマやカッコの不足）がないか確認してください。Claude Desktop を再起動することも有効です。</li>
+      <li><strong>ファイル名の確認:</strong> <code>aibridge-connector-v2.exe</code>（<code>-v2</code> が付いているか）を確認してください。旧版（<code>aibridge-connector.exe</code>）は v2 では動作しません。</li>
+      <li><strong>通信エラーが出る:</strong> ESP32 と PC が同じ Wi-Fi につながっているか、IP アドレスが正しいか確認してください。</li>
+    </ul>
+  </div>
+
+  <!-- ライセンス -->
+  <div class="license">
+    ⚖️ ライセンス / 著作権 &copy; 2026 Nishioka Sadahiko<br>
+    本ソフトは AiBridgeMCP 専用の接続プロキシです。
+  </div>
+
+</div>
+</body>
+</html>
