@@ -1,4 +1,9 @@
-> [!IMPORTANT]
+📚 AiBridgeMCP Docs — Start here for setup guides, technical references, and FAQ. 2026-03-13
+Ask questions directly inside NotebookLM and get answers from the official documentation.
+👉 https://notebooklm.google.com/notebook/f2ce997f-18c2-44c4-8738-973b204c190c
+
+---
+
 > ### Notice: Transition to Streamable HTTP and Deprecation of Legacy SSE
 >
 > To align with the upcoming **Model Context Protocol (MCP) version 2026-03-26**, Anthropic and the MCP ecosystem will transition from the legacy HTTP+SSE transport to **Streamable HTTP**. This update enhances connection stability and reliability for AI-to-hardware communication.
