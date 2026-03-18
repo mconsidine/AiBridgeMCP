@@ -1,4 +1,4 @@
-**LUNA** (v3.9.0+) adds a Lua scripting engine to the AiBridgeMCP server.
+**LUNA** (v3.9.0+) adds a Lua scripting engine to the AiBridgeMCP server.2026-03-18
 Claude can now deploy scripts directly onto the ESP32, which then run
 autonomously — no PC, no cloud, no further AI involvement required.
 
