@@ -1,5 +1,3 @@
----
-
 ## LUNA — The Next Step
 
 **LUNA** (v3.9.0+) adds a Lua scripting engine to the AiBridgeMCP server.
